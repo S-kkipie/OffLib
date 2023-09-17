@@ -136,6 +136,9 @@ section .sidebar .bar-menu ul li:hover, section .sidebar .bar-end .logout:hover{
 section .sidebar .bar-menu ul li:hover a, section .sidebar .bar-end .logout:hover a{
   color: white;
 }
+section .sidebar.close .bar-menu .bar-links ul li a span, section .sidebar.close .bar-end .logout a span{
+  display: none;
+}
 section .sidebar .bar-menu .bar-end{
   width: 100%;
   display: flex;
@@ -225,6 +228,7 @@ main.close  .fotos .foto-perfil, main  .fotos .foto-perfil{
 }
 
 main .fotos .button-portada{
+  transition: 0.4s;
   width: auto;
   height: auto;
   position: absolute;
@@ -239,6 +243,7 @@ main .fotos .button-portada{
 main .button-portada:hover, main .contenedor-foto-perfil .button-perfil:hover{
   background-color: rgb(134, 134, 134);
   cursor: pointer;
+  transition: 0.4s;
 }
 main .fotos .foto-portada:hover ~ .button-portada, main .fotos .button-portada:hover{
   display: flex;
@@ -246,6 +251,7 @@ main .fotos .foto-portada:hover ~ .button-portada, main .fotos .button-portada:h
   justify-self: center;
 }
 main .fotos .button-perfil{
+  transition: 0.4s;
   width: auto;
   height: auto;
   position: absolute;
@@ -271,7 +277,7 @@ section.seccion-perfil-usuario{
   background-color: #616161b2;
   width: 50%;
   height: auto;
-  padding: 15px;
+  padding: 20px;
   border-radius: 6px;
 }
 section.seccion-perfil-usuario .perfil-usuario-footer{
@@ -282,4 +288,7 @@ section.seccion-perfil-usuario ul.lista-datos{
   list-style: none;
   padding: 0;
   width: 500px;
+}
+section.seccion-perfil-usuario .perfil-usuario-body .perfil-usuario-bio .texto{
+  margin: 0;
 }
