@@ -25,6 +25,7 @@ try {
     if ($stmt->rowCount() > 0) {
         // Obtener el resultado
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $_SESSION['rol'] = $row['rol'];
 
         // Imprimir los datos
         // echo "ID: " . $row['id'] . "<br>";
@@ -79,8 +80,12 @@ $carpeta = $_SESSION['email'];
             <div class="bar-start">
                 <a class="logo" href="#"><span>OL</span></a>
                 <div class="personal">
-                    <span class="name">ROL:</span>
-                    <div class="rol">Student</div>
+                    <span>ROL:</span>
+                    <span>
+                        <?php
+                        echo $_SESSION['rol'];
+                        ?>
+                    </span>
                 </div>
             </div>
             <i class='bx bx-chevron-right arrow'></i>
@@ -118,12 +123,15 @@ $carpeta = $_SESSION['email'];
                                 <span>Area personal</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class='bx bx-medal'></i>
-                                <span>Area personal</span>
-                            </a>
-                        </li>
+                        <?php
+                        if ($row['rol'] == "Superadmin") echo   "<li>
+                                    <a href='user_control.php'>
+                                        <i class='bx bx-medal'></i>
+                                        <span>Control de usuarios</span>
+                                    </a>
+                                </li>"
+                        ?>
+
                     </ul>
                 </div>
                 <div class="bar-end">
@@ -151,15 +159,13 @@ $carpeta = $_SESSION['email'];
         </div>
         <div class="fotos">
             <?php
-            if (file_exists($_SESSION['email'] . "/img/portada.jpg")) {
-                echo "<img class='foto-portada'  src='" . $carpeta . "\img\portada.jpg" . "' alt='No hay foto de portada'>";
-            } ?>
+            echo "<img class='foto-portada'  src='" . $carpeta . "\img\portada.jpg" . "' alt='No hay foto de portada'>";
+            ?>
             <button class="button-portada"><i class='bx bx-image-add'></i></button>
             <div class="contenedor-foto-perfil">
                 <?php
-                if (file_exists($_SESSION['email'] . "/img/perfil.jpg")) {
-                    echo "<img class='foto-perfil'  src='" . $carpeta . "\img\perfil.jpg" . "' alt='No hay foto de perfil'>";
-                } ?>
+                echo "<img class='foto-perfil'  src='" . $carpeta . "\img\perfil.jpg" . "' alt='No hay foto de perfil'>";
+                ?>
                 <button class="button-perfil"><i class='bx bx-image-add'></i></button>
                 <h1 class="name"> <?php echo $row['nombre'] ?></h1>
             </div>
