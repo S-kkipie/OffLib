@@ -120,7 +120,6 @@ $result = $conn->query($query);
             $i = 1;
             while ($row = $result->fetch_assoc()) {
                 echo "<tr id='$i' class='fila'>";
-                echo "<input type='hidden' name = 'id' value='" . $row['id'] . "'>";
                 echo "<td class='id'>"  . $row['id']  . "</td>";
                 echo "<td class='nombre'>"  . $row['nombre']  . "</td>";
                 echo "<td class='email'>"  . $row['email']  . "</td>";
@@ -146,21 +145,29 @@ $result = $conn->query($query);
         const tabla = document.querySelector(".tablaxd");
         const filas = tabla.getElementsByTagName("tr");
         let id, nombre, email, telefono, rol, password;
+        //empiezo por 1 ya que 0 es la fila de los titulos de cada columna
         for (let i = 1; i < filas.length; i++) {
             const celdas = filas[i].querySelectorAll("td");
-            const inputNames = ["nombre", "email", "telefono", "rol", "password"];
+            const inputNames = ["id", "nombre", "email", "telefono", "rol", "password"];
             const inputArray = [];
-            for (let j = 1; j < celdas.length - 2; j++) {
+            for (let j = 0; j < celdas.length - 2; j++) {
                 const input = document.createElement('input');
-                input.name = inputNames[j - 1];
+                input.name = inputNames[j];
                 input.type = 'text';
                 input.value = celdas[j].textContent;
+                if (j != 0) {
+                    input.type = 'text';
+                } else {
+                    input.type = 'hidden';
+                }
                 inputArray.push(input);
             }
             editButtons[i - 1].addEventListener('click', () => {
-                for (let j = 1; j < celdas.length - 2; j++) {
-                    celdas[j].textContent = "";
-                    celdas[j].appendChild(inputArray[j - 1]);
+                for (let j = 0; j < celdas.length - 2; j++) {
+                    if (j != 0) {
+                        celdas[j].textContent = "";
+                    }
+                    celdas[j].appendChild(inputArray[j]);
 
                 }
             });

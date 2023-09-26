@@ -57,8 +57,12 @@ $carpeta = $_SESSION['email'];
             <div class="bar-start">
                 <a class="logo" href="#"><span>OL</span></a>
                 <div class="personal">
-                    <span class="name">ROL:</span>
-                    <div class="rol">Student</div>
+                    <span>ROL:</span>
+                    <span>
+                        <?php
+                        echo $_SESSION['rol'];
+                        ?>
+                    </span>
                 </div>
             </div>
             <i class='bx bx-chevron-right arrow'></i>
@@ -96,12 +100,15 @@ $carpeta = $_SESSION['email'];
                                 <span>Area personal</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class='bx bx-medal'></i>
-                                <span>Area personal</span>
-                            </a>
-                        </li>
+                        <?php
+                        if ($row['rol'] == "Superadmin" || $row['rol'] == "Admin") echo   "<li>
+                                    <a href='user_control.php'>
+                                        <i class='bx bx-medal'></i>
+                                        <span>Control de usuarios</span>
+                                    </a>
+                                </li>"
+                        ?>
+
                     </ul>
                 </div>
                 <div class="bar-end">
@@ -113,18 +120,24 @@ $carpeta = $_SESSION['email'];
                     </li>
                 </div>
             </div>
+
+
         </div>
+
+
     </section>
     <main class="close">
         <div class="nav">
             <h2>BIENVENIDO AL SEMESTRE 2023B</h2>
             <div class="personal-info">
                 <?php
-                if (file_exists($_SESSION['email'] . "/img/perfil.jpg")) {
-                    echo "<img class='foto-perfil'  src='" . $carpeta . "\img\perfil.jpg" . "' alt='No hay foto de perfil'>";
-                } ?>
+                echo "<img class='foto-perfil'  src='" . $carpeta . "\img\perfil.jpg" . "' alt='No hay foto de perfil'>";
+                ?>
                 <h1 class="name"> <?php echo $row['nombre'] ?></h1>
             </div>
+        </div>
+        <div class="edit-buttons">
+            <button class="add-course">Agragar curso <i class='bx bx-book-add'></i></button>
         </div>
         <div class="all-courses">
             <div class="course">
@@ -227,7 +240,7 @@ $carpeta = $_SESSION['email'];
             </div>
         </div>
     </main>
-    <script src="my.js"></script>
+    <script src="my_courses.js"></script>
 </body>
 
 </html>

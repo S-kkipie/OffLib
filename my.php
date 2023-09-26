@@ -93,7 +93,7 @@ $carpeta = $_SESSION['email'];
                 <div class="bar-links">
                     <ul>
                         <li>
-                            <a href="#">
+                            <a href="my.php">
                                 <i class='bx bxs-user'></i>
                                 <span>Mi perfil</span>
                             </a>
@@ -124,7 +124,7 @@ $carpeta = $_SESSION['email'];
                             </a>
                         </li>
                         <?php
-                        if ($row['rol'] == "Superadmin") echo   "<li>
+                        if ($row['rol'] == "Superadmin" || $row['rol'] == "Admin") echo   "<li>
                                     <a href='user_control.php'>
                                         <i class='bx bx-medal'></i>
                                         <span>Control de usuarios</span>

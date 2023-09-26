@@ -11,7 +11,7 @@ foreach ($_POST as $nombreCampo => $valorCampo) {
     echo "<br>";
 }
 if (isset($_POST['email'])) {
-    $conn = new mysqli("localhost", "root", "", "offlib");
+    $conn = mysqli_connect("localhost", "root", "", "offlib");
     $id = $_POST["id"];
     $telefono = $_POST["telefono"];
     $nombre = $_POST["nombre"];
@@ -20,7 +20,27 @@ if (isset($_POST['email'])) {
 
     // Consulta SQL para actualizar los datos de la fila con el ID específico
     $sql = "UPDATE users1 SET telefono='$telefono', nombre='$nombre', email='$email', rol='$rol' WHERE id=$id";
-    $conn->close();
+    if (mysqli_query($conn, $sql)) {
+        echo "Los datos se actualizaron correctamente";
+    } else {
+        echo "Error al actualizar datos: " . mysqli_error($conn);
+    }
+    mysqli_close($conn);
 } else {
     header("location: user_control.php");
 }
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="user_control.php"><button>Salir</button></a>
+</body>
+
+</html>
