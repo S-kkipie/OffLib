@@ -1,32 +1,37 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
-:root{
+
+:root {
   --text-color: #ffeba7;
   --background-color: #053B50;
   --borderxd: solid white 2px;
   --color-contraste: #64CCC5;
   --link-color: #007bff;
 }
-body::-webkit-scrollbar-thumb{
+
+body::-webkit-scrollbar-thumb {
   background-color: rgb(31, 4, 151) !important;
   border-radius: 5px;
 
 }
-body{
-	font-family: 'Poppins', sans-serif;
-	font-weight: 300;
-	line-height: 1.7;
-	color: var(--text-color);
-	background-color: var(--background-color);
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-color);
+  background-color: var(--background-color);
   background-image: url(img/fondo3.jpg);
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   margin: 0;
 }
-a{
+
+a {
   color: var(--link-color);
 }
-.sidebar{
+
+.sidebar {
   position: fixed;
   background: var(--background-color);
   width: 220px;
@@ -35,20 +40,24 @@ a{
   transition: 0.5s;
   white-space: nowrap;
 }
-.sidebar.close{
+
+.sidebar.close {
   width: 50px;
 }
-section .sidebar .bar-start{
+
+section .sidebar .bar-start {
   position: relative;
   right: 6px;
   display: flex;
   width: 200px;
   height: 60px;
 }
-section .sidebar.close .bar-start .personal{
+
+section .sidebar.close .bar-start .personal {
   opacity: 0;
 }
-section .sidebar .bar-start .logo{
+
+section .sidebar .bar-start .logo {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,17 +68,19 @@ section .sidebar .bar-start .logo{
   height: 60px;
   border-radius: 6px;
 }
-section .sidebar .bar-start .personal{
+
+section .sidebar .bar-start .personal {
   transition: 0.5s;
   white-space: nowrap;
   height: 40px;
   display: flex;
   padding: 10px;
   justify-content: center;
-  flex-flow:column;
+  flex-flow: column;
   align-items: space-between;
 }
-section .sidebar .arrow{
+
+section .sidebar .arrow {
   color: black;
   width: 30px;
   height: 30px;
@@ -85,10 +96,12 @@ section .sidebar .arrow{
   transition: 0.5s;
   transform: rotateY(-180deg);
 }
-section .sidebar.close .arrow{
+
+section .sidebar.close .arrow {
   transform: translateX(-155px);
 }
-section .sidebar .bar-menu{
+
+section .sidebar .bar-menu {
   margin: 0;
   width: 100%;
   height: calc(100% - 80px);
@@ -97,7 +110,8 @@ section .sidebar .bar-menu{
   justify-content: space-between;
 
 }
-section .sidebar .bar-menu ul{
+
+section .sidebar .bar-menu ul {
   list-style: none;
   display: flex;
   flex-wrap: nowrap;
@@ -105,7 +119,9 @@ section .sidebar .bar-menu ul{
   justify-content: flex-start;
   padding: 0px;
 }
-section .sidebar .bar-menu ul li , section .sidebar .bar-end li{
+
+section .sidebar .bar-menu ul li,
+section .sidebar .bar-end li {
   font-weight: 500;
   height: 50px;
   border-radius: 6px;
@@ -116,27 +132,39 @@ section .sidebar .bar-menu ul li , section .sidebar .bar-end li{
   cursor: pointer;
   font-size: 18px;
 }
-section .sidebar .bar-menu ul li a , section .sidebar .bar-end li a{
+
+section .sidebar .bar-menu ul li a,
+section .sidebar .bar-end li a {
   text-decoration: none;
   position: relative;
   left: 15px;
 }
-section .sidebar .bar-menu ul li a i{
+
+section .sidebar .bar-menu ul li a i {
   transition: 0.5s;
 }
-section .sidebar .bar-menu ul li a span , section .sidebar .bar-end li a span{
+
+section .sidebar .bar-menu ul li a span,
+section .sidebar .bar-end li a span {
   transition: 0.5s;
 }
-section .sidebar.close .bar-menu ul li a span , section .sidebar.close .bar-end li a span{
+
+section .sidebar.close .bar-menu ul li a span,
+section .sidebar.close .bar-end li a span {
   opacity: 0;
 }
-section .sidebar .bar-menu ul li:hover, section .sidebar .bar-end .logout:hover{
+
+section .sidebar .bar-menu ul li:hover,
+section .sidebar .bar-end .logout:hover {
   background-color: var(--color-contraste);
 }
-section .sidebar .bar-menu ul li:hover a, section .sidebar .bar-end .logout:hover a{
+
+section .sidebar .bar-menu ul li:hover a,
+section .sidebar .bar-end .logout:hover a {
   color: white;
 }
-section .sidebar .bar-menu .bar-end{
+
+section .sidebar .bar-menu .bar-end {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -167,7 +195,7 @@ main.close{
   transform: translateX(-145px);
   width: calc(100% - 130px);
 }*/
-main{
+main {
   position: absolute;
   width: calc(100% - 280px);
   margin-top: 20px;
@@ -179,55 +207,71 @@ main{
   flex-flow: nowrap column;
   margin-right: 20px;
 }
-main.close{
+
+main.close {
   width: calc(100% - 125px);
   margin-left: 110px;
 }
-main .nav{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 0;
-}
-main .nav h2{
-    margin-top: 0;
-}
-main .nav .personal-info{
-    width: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-main .nav .foto-perfil{
-    position: relative;
-    right: 10px;
-    width: 60px;
-    height: 60px;
-    border-radius: 6px;
-}
-main .nav .name{
 
-   margin: 0;
+main .nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0;
 }
 
-main .all-courses{
-    margin-top: 10px;
-    color: var(--text-color);
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-  }
-  main .all-courses .course{
-    background-color: rgba(78, 72, 72, 0.8);
-    margin: 10px;
-    padding: 20px;
-    border: #EEEEEE solid 2px;
-    border-radius: 6px;
-    width: calc(100% / 3 - 75px);
-  }
-  main .all-courses .course a{
-    font-size: 2.2em;
-    font-weight: 500;
-  }
+main .nav h2 {
+  margin-top: 0;
+}
+
+main .nav .personal-info {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main .nav .foto-perfil {
+  position: relative;
+  right: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+}
+
+main .nav .name {
+  margin: 0;
+}
+
+main .edit-buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  flex-flow: row nowrap;
+}
+
+main .all-courses {
+  margin-top: 10px;
+  color: var(--text-color);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+main .all-courses .course {
+  background-color: rgba(78, 72, 72, 0.8);
+  margin: 10px;
+  padding: 20px;
+  border: #EEEEEE solid 2px;
+  border-radius: 6px;
+  width: calc(100% / 3 - 75px);
+}
+
+main .all-courses .course a {
+  font-size: 2.2em;
+  font-weight: 500;
+}

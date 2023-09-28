@@ -131,13 +131,13 @@ $carpeta = $_SESSION['email'];
             <h2>BIENVENIDO AL SEMESTRE 2023B</h2>
             <div class="personal-info">
                 <?php
-                echo "<img class='foto-perfil'  src='" . $carpeta . "\img\perfil.jpg" . "' alt='No hay foto de perfil'>";
+                echo "<img class='foto-perfil'  src=' $carpeta \img\perfil.jpg" . "' alt='No hay foto de perfil'>";
                 ?>
                 <h1 class="name"> <?php echo $row['nombre'] ?></h1>
             </div>
         </div>
         <div class="edit-buttons">
-            <button class="add-course">Agragar curso <i class='bx bx-book-add'></i></button>
+            <a href=""><button class="add-course">Agragar curso <i class='bx bx-book-add'></i></button></a>
         </div>
         <div class="all-courses">
             <div class="course">

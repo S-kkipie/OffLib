@@ -17,96 +17,7 @@ $result = $conn->query($query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control de usuarios</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
-
-        :root {
-            --text-color: #ffeba7;
-            --background-color: #1f2029;
-            --borderxd: solid white 2px;
-            --color-contraste: #64CCC5;
-            --link-color: #007bff;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-            line-height: 1.7;
-            color: var(--text-color);
-            background-color: var(--background-color);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            margin: 0;
-        }
-
-        body {
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-flow: nowrap column;
-        }
-
-        .tablaxd {
-            border: 2px solid black;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        .tablaxd td {
-            height: 30px;
-            padding: 7px;
-            border: solid black 1px;
-        }
-
-        .tablaxd button {
-            all: unset;
-            margin: 5px;
-            cursor: pointer;
-            border: 1px solid black;
-            border-radius: 2px;
-            width: 30px;
-            height: 30px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .content {
-            border: solid 2px black;
-            border-radius: 6px;
-            padding: 15px 40px;
-            width: 90%;
-        }
-
-        h2 {
-            margin: 40px 0;
-        }
-
-        .boton-salida button {
-            width: 80px;
-            height: 35px;
-            border-radius: 6px;
-            font-weight: 200;
-            margin: 30px 0;
-            background-color: white;
-            cursor: pointer;
-        }
-
-        input {
-            font-family: inherit;
-            font-weight: inherit;
-            font-size: inherit;
-            color: inherit;
-            outline: none;
-            border: none;
-            border-bottom: var(--text-color) solid 2px;
-            background-color: transparent;
-            width: auto;
-        }
-    </style>
+    <link rel="stylesheet" href="user_control.css">
 </head>
 
 <body>
@@ -136,43 +47,96 @@ $result = $conn->query($query);
             echo "</table>";
             ?>
         </form>
+        <div class="botones">
+            <button class="add-users">Añadir usuario</button>
+            <a class="boton-salida" href="my.php"><button>Salir</button></a>
 
-        <a class="boton-salida" href="my.php"><button>Salir</button></a>
+        </div>
     </div>
 
     <script>
-        const editButtons = document.querySelectorAll('button.edit');
-        const tabla = document.querySelector(".tablaxd");
-        const filas = tabla.getElementsByTagName("tr");
-        let id, nombre, email, telefono, rol, password;
-        //empiezo por 1 ya que 0 es la fila de los titulos de cada columna
-        for (let i = 1; i < filas.length; i++) {
-            const celdas = filas[i].querySelectorAll("td");
-            const inputNames = ["id", "nombre", "email", "telefono", "rol", "password"];
-            const inputArray = [];
-            for (let j = 0; j < celdas.length - 2; j++) {
-                const input = document.createElement('input');
-                input.name = inputNames[j];
-                input.type = 'text';
-                input.value = celdas[j].textContent;
-                if (j != 0) {
-                    input.type = 'text';
-                } else {
-                    input.type = 'hidden';
-                }
-                inputArray.push(input);
-            }
-            editButtons[i - 1].addEventListener('click', () => {
-                for (let j = 0; j < celdas.length - 2; j++) {
-                    if (j != 0) {
-                        celdas[j].textContent = "";
-                    }
-                    celdas[j].appendChild(inputArray[j]);
+    const addUser = document.querySelector(".add-users")
+    const editButtons = document.querySelectorAll('button.edit');
+    const tabla = document.querySelector(".tablaxd");
+    const filas = tabla.getElementsByTagName("tr");
+    let id, nombre, email, telefono, rol, password;
+    const inputNames = ["id", "nombre", "email", "telefono", "rol", "password"];
+    addUser.addEventListener("click", () => {
+        const buttonEdit = document.createElement("button");
+        const iconButtonEdit = document.createElement("i");
+        iconButtonEdit.className = "bx bxs-edit-alt";
+        buttonEdit.className = "edit";
+        buttonEdit.type = "button";
+        buttonEdit.appendChild(iconButtonEdit);
+        const buttonDelete = document.createElement("button");
+        const iconButtonDelete = document.createElement("i");
+        iconButtonDelete.className = "bx bxs-trash";
+        buttonDelete.className = "delete";
+        buttonDelete.type = "button";
+        buttonDelete.appendChild(iconButtonDelete);
+        const buttonSave = document.createElement("button");
+        const iconButtonSave = document.createElement("i");
+        iconButtonSave.className = "bx bxs-save";
+        buttonSave.className = "save";
+        buttonSave.type = "submit";
+        buttonSave.appendChild(iconButtonSave);
 
-                }
-            });
+        const newUser_Fila = document.createElement("tr");
+        let tdArray = [];
+        let celda, inputInfo;
+        for (let i = 0; i < 9; i++) {
+            celda = document.createElement("td");
+            inputInfo = document.createElement("input");
+            if (0 < i && i < 6) {
+                inputInfo.name = inputNames[i];
+                inputInfo.type = "text";
+                celda.appendChild(inputInfo);
+            }
+            if (i == 7) {
+                celda.appendChild(buttonEdit);
+                celda.appendChild(buttonDelete);
+                celda.appendChild(buttonSave);
+            }
+            if (i == 8) {
+                celda.hidden = "hidden";
+                inputInfo.name = "newUser";
+                inputInfo.type = "hidden";
+                inputInfo.value = "true";
+                celda.appendChild(inputInfo);
+            }
+            newUser_Fila.appendChild(celda);
 
         }
+        tabla.appendChild(newUser_Fila);
+    })
+
+
+    //empiezo por 1 ya que 0 es la fila de los titulos de cada columna
+    for (let i = 1; i < filas.length; i++) {
+        const celdas = filas[i].querySelectorAll("td");
+        const inputArray = [];
+        for (let j = 0; j < celdas.length - 2; j++) {
+            const input = document.createElement('input');
+            input.name = inputNames[j];
+            input.type = 'text';
+            input.value = celdas[j].textContent;
+            if (j != 0) {
+                input.type = 'text';
+            } else {
+                input.type = 'hidden';
+            }
+            inputArray.push(input);
+        }
+        editButtons[i - 1].addEventListener('click', () => {
+            for (let j = 0; j < celdas.length - 2; j++) {
+                if (j != 0) {
+                    celdas[j].textContent = "";
+                }
+                celdas[j].appendChild(inputArray[j]);
+
+            }
+        });
+    }
     </script>
 </body>
 

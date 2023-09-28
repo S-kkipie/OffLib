@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+
+:root {
+    --text-color: #ffeba7;
+    --background-color: #1f2029;
+    --borderxd: solid white 2px;
+    --color-contraste: #64CCC5;
+    --link-color: #007bff;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: nowrap column;
+}
+
+.tablaxd {
+    border: 2px solid black;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tablaxd td {
+    height: 30px;
+    padding: 7px;
+    border: solid black 1px;
+}
+
+.tablaxd button {
+    all: unset;
+    margin: 5px;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 2px;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    border: solid 2px black;
+    border-radius: 6px;
+    padding: 15px 40px;
+    width: 90%;
+}
+
+h2 {
+    margin: 40px 0;
+}
+
+.boton-salida button,
+.add-users {
+    width: 80px;
+    height: 35px;
+    border-radius: 6px;
+    font-weight: 200;
+    margin: 30px 20px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.botones {
+    display: flex;
+}
+
+input {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    color: inherit;
+    outline: none;
+    border: none;
+    border-bottom: var(--text-color) solid 2px;
+    background-color: transparent;
+    width: auto;
+}

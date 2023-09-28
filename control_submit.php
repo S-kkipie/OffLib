@@ -10,20 +10,41 @@ foreach ($_POST as $nombreCampo => $valorCampo) {
     echo "Valor del campo: " . $valorCampo . "<br>";
     echo "<br>";
 }
-if (isset($_POST['email'])) {
-    $conn = mysqli_connect("localhost", "root", "", "offlib");
-    $id = $_POST["id"];
+$conn = mysqli_connect("localhost", "root", "", "offlib");
+$query = "SELECT * FROM users1";
+$result = $conn->query($query);
+$row = $result->fetch_assoc();
+if (isset($_POST['submit'])) {
     $telefono = $_POST["telefono"];
     $nombre = $_POST["nombre"];
     $email = $_POST["email"];
     $rol = $_POST["rol"];
-
-    // Consulta SQL para actualizar los datos de la fila con el ID específico
-    $sql = "UPDATE users1 SET telefono='$telefono', nombre='$nombre', email='$email', rol='$rol' WHERE id=$id";
-    if (mysqli_query($conn, $sql)) {
-        echo "Los datos se actualizaron correctamente";
+    $password = $_POST['password'];
+    $password_hash = $password;
+    if ($row['password'] != $password) {
+        $password_hash = hash('md5', $password);
+    }
+    if (!isset($_POST['newUser'])) {
+        $id = $_POST["id"];
+        $sql = "UPDATE users1 SET telefono='$telefono', password = '$password_hash', nombre='$nombre', email='$email', rol='$rol' WHERE id=$id";
+        if (mysqli_query($conn, $sql)) {
+            echo "Los datos se actualizaron correctamente";
+        } else {
+            echo "Error al actualizar datos: " . mysqli_error($conn);
+        }
     } else {
-        echo "Error al actualizar datos: " . mysqli_error($conn);
+        if (isset($telefono, $nombre, $email, $rol)) {
+            $sql = "INSERT INTO users1 (nombre, email, password, telefono) VALUES (?, ?, ?, ?)";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "ssss", $nombre, $email, $password_hash, $telefono);
+            if (mysqli_stmt_execute($stmt)) {
+                mkdir($email, 0777, true);
+                mkdir($email . "/img", 0777, true);
+            } else {
+                echo "Error en el registro: " . mysqli_error($conn);
+            }
+            mysqli_stmt_close($stmt);
+        }
     }
     mysqli_close($conn);
 } else {
